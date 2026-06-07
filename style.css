@@ -1226,9 +1226,34 @@ body {
   }
 
   /* Hide secondary / redundant navigation items to prevent overflow on mobile */
-  .sidebar-mid .nav-item[title="Analytics"],
-  .sidebar-bottom {
+  .sidebar-mid .nav-item[title="Analytics"] {
     display: none;
+  }
+
+  .sidebar-bottom {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .sidebar-bottom .nav-item {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 12px !important;
+  }
+
+  .sidebar-bottom .nav-group-pills {
+    flex-direction: row !important;
+    gap: 4px !important;
+    padding: 4px !important;
+    border-radius: 14px !important;
+  }
+
+  .sidebar-bottom .nav-group-pills .nav-item {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
   }
 
   /* Hero section responsiveness */
