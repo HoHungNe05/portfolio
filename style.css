@@ -1207,7 +1207,7 @@ body {
 
   /* When mobile menu is open, height expands to fit contents */
   .sidebar-left.menu-open {
-    height: 175px !important;
+    height: 120px !important;
   }
 
   /* Mobile Header Row (always visible) */
@@ -1270,11 +1270,11 @@ body {
   /* Collapsible content container styling */
   .sidebar-content {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 14px !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     margin-top: 14px !important;
     width: 100% !important;
-    align-items: center !important;
     opacity: 0 !important;
     pointer-events: none !important;
     transition: opacity 0.2s ease !important;
@@ -1287,9 +1287,9 @@ body {
   }
 
   .sidebar-top-group {
-    width: 100% !important;
+    width: auto !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
   }
 
   .nav-menu {
@@ -1320,9 +1320,9 @@ body {
   }
 
   .sidebar-bottom-group {
-    width: 100% !important;
+    width: auto !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-end !important;
   }
 
   .sidebar-bottom-group .nav-group-pills {
