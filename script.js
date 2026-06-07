@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bellActive) {
       bellBtn.style.color = 'var(--primary-color)';
       bellBtn.innerHTML = '<i data-lucide="bell-ring"></i>';
-      alert('Notifications turned ON for Jazzlyn Trisha!');
+      alert('Notifications turned ON for Hồ Văn Hùng!');
     } else {
       bellBtn.style.color = 'var(--text-muted)';
       bellBtn.innerHTML = '<i data-lucide="bell"></i>';
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mediaNext = document.getElementById('media-next');
   
   // Carousel images array
-  const mediaImages = ['media.png', 'main.png'];
+  const mediaImages = ['media1.jpg', 'media2.jpg', 'media3.jpg'];
   let currentMediaIndex = 0;
 
   function switchMedia(direction) {
@@ -245,6 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ripple.remove();
     }, 1000);
     
-    alert('Thank you for interacting with Jazzlyn Trisha\'s Profile! ✨');
+    alert('Thank you for interacting with Hồ Văn Hùng\'s Profile! ✨');
   });
 });
