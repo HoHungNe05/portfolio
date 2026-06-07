@@ -14,7 +14,7 @@
     rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="style.css?v=2.1">
+  <link rel="stylesheet" href="style.css?v=2.2">
 </head>
 
 <body>
@@ -56,10 +56,10 @@
       <div class="sidebar-content" id="sidebar-content">
         <div class="sidebar-top-group">
           <nav class="nav-menu">
-            <a href="#" class="nav-item" title="Trang Chủ"><i data-lucide="home"></i></a>
-            <a href="#" class="nav-item active" title="Star"><i data-lucide="star"></i></a>
-            <a href="#" class="nav-item" title="Gallery"><i data-lucide="camera"></i></a>
-            <a href="#" class="nav-item" title="Projects"><i data-lucide="briefcase"></i></a>
+            <a href="#" class="nav-item active" title="Trang Chủ" data-page="home"><i data-lucide="home"></i></a>
+            <a href="#" class="nav-item" title="Star" data-page="star"><i data-lucide="star"></i></a>
+            <a href="#" class="nav-item" title="Gallery" data-page="gallery"><i data-lucide="camera"></i></a>
+            <a href="#" class="nav-item" title="Projects" data-page="projects"><i data-lucide="briefcase"></i></a>
           </nav>
         </div>
 
@@ -99,8 +99,8 @@
       </div>
     </aside>
 
-    <!-- Center Section: Main Hero Card -->
-    <section class="hero-section">
+    <!-- Center Section: Main Hero Card (Star Page) -->
+    <section class="hero-section page-section" id="page-star">
       <div class="photo-card-wrapper">
         <!-- Main Photo -->
         <img src="avatar.jpg" alt="Hồ Văn Hùng" class="main-hero-photo">
@@ -180,6 +180,109 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- Page 2: Home Page (Center panel) -->
+    <section class="home-section page-section active" id="page-home">
+      <div class="page-home">
+        <!-- Welcome Card -->
+        <div class="home-welcome-card">
+          <span class="welcome-handwritten">Xin chào! Mình là</span>
+          <h1 class="welcome-name">HỒ VĂN HÙNG</h1>
+          <p class="welcome-sub">Creative Designer &amp; Tech Enthusiast</p>
+          <div class="welcome-actions">
+            <button class="btn-primary" id="btn-explore-projects">Khám Phá Dự Án</button>
+            <button class="btn-secondary" id="btn-contact-fb">Liên Hệ Ngay</button>
+          </div>
+        </div>
+
+        <!-- Bio, Skills and Control grid -->
+        <div class="home-grid">
+          <!-- Bio Card -->
+          <div class="home-card">
+            <h3><i data-lucide="user"></i>Giới Thiệu</h3>
+            <p>
+              Mình là một người trẻ sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện đang theo đuổi con đường thiết kế giao diện hiện đại và nghệ thuật sáng tạo.
+            </p>
+            <p>
+              Với đam mê tạo ra các trải nghiệm người dùng tuyệt vời, mình luôn không ngừng học hỏi và thử thách bản thân với các phong cách thiết kế mới lạ như Glassmorphic, Cyberpunk, và Minimalist.
+            </p>
+          </div>
+
+          <!-- Skills Card -->
+          <div class="home-card">
+            <h3><i data-lucide="cpu"></i>Kỹ Năng</h3>
+            <div class="skills-list">
+              <span class="skill-tag">UI/UX Design</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">HTML5 / CSS3</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Billiards Tech</span>
+            </div>
+            <div class="stats-grid" style="margin-top: 10px;">
+              <div class="skill-progress-bar">
+                <div class="progress-header"><span>Sáng Tạo</span><span>95%</span></div>
+                <div class="progress-track"><div class="progress-fill" data-target="95" style="width: 0%;"></div></div>
+              </div>
+              <div class="skill-progress-bar">
+                <div class="progress-header"><span>Code</span><span>80%</span></div>
+                <div class="progress-track"><div class="progress-fill" data-target="80" style="width: 0%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Control Center Widget (Theme Selector) -->
+          <div class="home-card control-center-card">
+            <h3><i data-lucide="sliders"></i>Bảng Điều Khiển</h3>
+            <p class="control-subtitle">Cá nhân hóa giao diện trang web theo phong cách của bạn.</p>
+            <div class="theme-selector">
+              <button class="theme-pill active" data-theme="default" title="Cream Theme">
+                <span class="theme-color-preview cream"></span>
+                <span class="theme-label">Cream</span>
+              </button>
+              <button class="theme-pill" data-theme="pink" title="Neon Pink Theme">
+                <span class="theme-color-preview pink"></span>
+                <span class="theme-label">Neon Pink</span>
+              </button>
+              <button class="theme-pill" data-theme="brown" title="Earthy Taupe Theme">
+                <span class="theme-color-preview brown"></span>
+                <span class="theme-label">Earthy Taupe</span>
+              </button>
+              <button class="theme-pill" data-theme="peach" title="Soft Peach Theme">
+                <span class="theme-color-preview peach"></span>
+                <span class="theme-label">Soft Peach</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 3: Gallery (Center panel placeholder) -->
+    <section class="gallery-section page-section" id="page-gallery">
+      <div class="page-coming-soon">
+        <div class="coming-soon-card">
+          <div class="icon-glow"><i data-lucide="camera" class="huge-icon"></i></div>
+          <h2>Bộ Sưu Tập</h2>
+          <p>Nơi lưu giữ những khoảnh khắc đời thường, hình ảnh nghệ thuật và góc nhìn sáng tạo của mình.</p>
+          <div class="coming-soon-badge">Coming Soon</div>
+          <button class="btn-primary btn-back-home"><i data-lucide="arrow-left"></i>Quay lại Trang Chủ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 4: Projects (Center panel placeholder) -->
+    <section class="projects-section page-section" id="page-projects">
+      <div class="page-coming-soon">
+        <div class="coming-soon-card">
+          <div class="icon-glow"><i data-lucide="briefcase" class="huge-icon"></i></div>
+          <h2>Dự Án Sáng Tạo</h2>
+          <p>Không gian lưu trữ các thiết kế giao diện Figma, các sản phẩm web mini và sản phẩm code cá nhân.</p>
+          <div class="coming-soon-badge">Coming Soon</div>
+          <button class="btn-primary btn-back-home"><i data-lucide="arrow-left"></i>Quay lại Trang Chủ</button>
+        </div>
       </div>
     </section>
 
@@ -299,7 +402,7 @@
   </div>
 
   <div id="youtube-player" style="display: none;"></div>
-  <script src="script.js?v=2.1"></script>
+  <script src="script.js?v=2.2"></script>
 </body>
 
 </html>

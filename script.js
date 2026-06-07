@@ -293,4 +293,137 @@ document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons(); // Re-render Lucide icons
     });
   }
+
+  // --- Theme Toggler & Control Center ---
+  const activeTheme = localStorage.getItem('theme-style') || 'default';
+  if (activeTheme !== 'default') {
+    document.body.setAttribute('data-theme-style', activeTheme);
+  }
+
+  const themePills = document.querySelectorAll('.theme-pill');
+  themePills.forEach(pill => {
+    if (pill.getAttribute('data-theme') === activeTheme) {
+      pill.classList.add('active');
+    } else {
+      pill.classList.remove('active');
+    }
+
+    pill.addEventListener('click', () => {
+      themePills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const targetTheme = pill.getAttribute('data-theme');
+      if (targetTheme === 'default') {
+        document.body.removeAttribute('data-theme-style');
+      } else {
+        document.body.setAttribute('data-theme-style', targetTheme);
+      }
+      localStorage.setItem('theme-style', targetTheme);
+    });
+  });
+
+  // --- Single Page Navigation ---
+  const navItems = document.querySelectorAll('.nav-item[data-page]');
+  const sections = document.querySelectorAll('.page-section');
+
+  function animateSkillsProgress() {
+    const progressFills = document.querySelectorAll('.progress-fill');
+    progressFills.forEach(fill => {
+      const target = fill.getAttribute('data-target') || '0';
+      fill.style.width = '0%';
+      setTimeout(() => {
+        fill.style.width = `${target}%`;
+      }, 150);
+    });
+  }
+
+  function resetSkillsProgress() {
+    const progressFills = document.querySelectorAll('.progress-fill');
+    progressFills.forEach(fill => {
+      fill.style.width = '0%';
+    });
+  }
+
+  function switchPage(pageId) {
+    sections.forEach(sec => sec.classList.remove('active'));
+
+    const targetSection = document.getElementById(`page-${pageId}`);
+    if (targetSection) {
+      targetSection.classList.add('active');
+    }
+
+    navItems.forEach(item => {
+      if (item.getAttribute('data-page') === pageId) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+
+    if (pageId === 'home') {
+      animateSkillsProgress();
+    } else {
+      resetSkillsProgress();
+    }
+
+    const bgIndex = document.querySelector('.bg-index');
+    if (bgIndex) {
+      const indexes = { home: '01', star: '02', gallery: '03', projects: '04' };
+      bgIndex.textContent = indexes[pageId] || '01';
+    }
+
+    // Collapse mobile sidebar
+    if (sidebar && sidebar.classList.contains('menu-open')) {
+      sidebar.classList.remove('menu-open');
+      const currentMenuIcon = document.getElementById('menu-icon');
+      if (currentMenuIcon) {
+        currentMenuIcon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+  }
+
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pageId = item.getAttribute('data-page');
+      switchPage(pageId);
+    });
+  });
+
+  // Notch back to Home
+  const backToHomeBtn = document.querySelector('.top-left-notch .btn-notch-action');
+  if (backToHomeBtn) {
+    backToHomeBtn.addEventListener('click', () => {
+      switchPage('home');
+    });
+  }
+
+  // Home actions
+  const exploreProjectsBtn = document.getElementById('btn-explore-projects');
+  if (exploreProjectsBtn) {
+    exploreProjectsBtn.addEventListener('click', () => {
+      switchPage('projects');
+    });
+  }
+
+  const contactFbBtn = document.getElementById('btn-contact-fb');
+  if (contactFbBtn) {
+    contactFbBtn.addEventListener('click', () => {
+      window.open('https://www.facebook.com/vanhung.ho.75685962', '_blank');
+    });
+  }
+
+  // Back home button from placeholders
+  const backHomeButtons = document.querySelectorAll('.btn-back-home');
+  backHomeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      switchPage('home');
+    });
+  });
+
+  // Trigger animations on load if Home page is active
+  const initialActiveNav = document.querySelector('.nav-item.active[data-page]');
+  if (initialActiveNav && initialActiveNav.getAttribute('data-page') === 'home') {
+    animateSkillsProgress();
+  }
 });
