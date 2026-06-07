@@ -1,7 +1,7 @@
 /* CSS Reset & Variables */
 :root {
   /* Cream Theme (Default) */
-  --bg-gradient: radial-gradient(circle at 30% 30%, #f6f0ea 0%, #e6d8ce 50%, #c4b5a9 100%);
+  --bg-gradient: radial-gradient(circle at 30% 30%, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
   --dashboard-bg: rgba(253, 251, 248, 0.85);
   --card-bg: rgba(255, 255, 255, 0.95);
   --widget-bg: rgba(246, 241, 236, 0.8);
