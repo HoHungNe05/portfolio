@@ -42,19 +42,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Interactive Like / Dislike Count
+  // 2. Interactive Like / Dislike Count (Server-based)
   const likeBtn = document.getElementById('like-btn');
   const likeCountSpan = document.getElementById('like-count');
-  let likeCount = parseInt(likeCountSpan.textContent);
-  let hasLiked = false;
+  const dislikeBtn = document.getElementById('dislike-btn');
+  const dislikeCountSpan = document.getElementById('dislike-count');
 
-  likeBtn.addEventListener('click', () => {
-    if (!hasLiked) {
-      likeCount++;
-      likeCountSpan.textContent = likeCount;
+  let hasLiked = localStorage.getItem('has-liked-hohung') === 'true';
+  let hasDisliked = localStorage.getItem('has-disliked-hohung') === 'true';
+
+  // Fetch initial counts from server
+  async function fetchCounts() {
+    try {
+      const likesRes = await fetch('https://abacus.jasoncameron.dev/get/hohung_portfolio/likes');
+      const likesData = await likesRes.json();
+      likeCountSpan.textContent = likesData.value || 0;
+
+      const dislikesRes = await fetch('https://abacus.jasoncameron.dev/get/hohung_portfolio/dislikes');
+      const dislikesData = await dislikesRes.json();
+      dislikeCountSpan.textContent = dislikesData.value || 0;
+    } catch (err) {
+      console.error('Error fetching counts:', err);
+    }
+  }
+
+  fetchCounts();
+
+  // Highlight if already liked/disliked
+  if (hasLiked) {
+    likeBtn.classList.add('active');
+  }
+  if (hasDisliked) {
+    dislikeBtn.classList.add('active');
+  }
+
+  likeBtn.addEventListener('click', async () => {
+    if (hasLiked) {
+      alert('Bạn đã thích trang này rồi! Cảm ơn bạn nhé! ❤️');
+      return;
+    }
+    
+    if (hasDisliked) {
+      alert('Bạn đang dislike trang này, hãy tải lại trang nếu muốn đổi ý nhé!');
+      return;
+    }
+
+    try {
       likeBtn.classList.add('animated-bounce');
-      hasLiked = true;
+      // Increment on server
+      const res = await fetch('https://abacus.jasoncameron.dev/hit/hohung_portfolio/likes');
+      const data = await res.json();
+      likeCountSpan.textContent = data.value;
       
+      hasLiked = true;
+      localStorage.setItem('has-liked-hohung', 'true');
+      likeBtn.classList.add('active');
+
       // Small visual feedback: pop heart
       const heartIcon = likeBtn.querySelector('i');
       heartIcon.style.transform = 'scale(1.4)';
@@ -62,33 +105,39 @@ document.addEventListener('DOMContentLoaded', () => {
         heartIcon.style.transform = 'scale(1)';
         likeBtn.classList.remove('animated-bounce');
       }, 300);
-    } else {
-      likeCount--;
-      likeCountSpan.textContent = likeCount;
-      hasLiked = false;
+    } catch (err) {
+      console.error('Error sending like:', err);
     }
   });
 
-  const dislikeBtn = document.getElementById('dislike-btn');
-  const dislikeCountSpan = document.getElementById('dislike-count');
-  let dislikeCount = parseInt(dislikeCountSpan.textContent);
-  let hasDisliked = false;
+  dislikeBtn.addEventListener('click', async () => {
+    if (hasDisliked) {
+      alert('Bạn đã dislike trang này rồi! 😢');
+      return;
+    }
 
-  dislikeBtn.addEventListener('click', () => {
-    if (!hasDisliked) {
-      dislikeCount++;
-      dislikeCountSpan.textContent = dislikeCount;
+    if (hasLiked) {
+      alert('Bạn đang thích trang này rồi, cảm ơn bạn nhé!');
+      return;
+    }
+
+    try {
+      // Increment on server
+      const res = await fetch('https://abacus.jasoncameron.dev/hit/hohung_portfolio/dislikes');
+      const data = await res.json();
+      dislikeCountSpan.textContent = data.value;
+
       hasDisliked = true;
-      
+      localStorage.setItem('has-disliked-hohung', 'true');
+      dislikeBtn.classList.add('active');
+
       const thumbsDown = dislikeBtn.querySelector('i');
       thumbsDown.style.transform = 'scale(1.4)';
       setTimeout(() => {
         thumbsDown.style.transform = 'scale(1)';
       }, 300);
-    } else {
-      dislikeCount--;
-      dislikeCountSpan.textContent = dislikeCount;
-      hasDisliked = false;
+    } catch (err) {
+      console.error('Error sending dislike:', err);
     }
   });
 
