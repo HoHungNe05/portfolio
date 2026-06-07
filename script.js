@@ -19,7 +19,28 @@ document.addEventListener('DOMContentLoaded', () => {
     welcomeGreeting.textContent = greeting;
   }
 
+  // Sun/Moon Theme Toggler Switch Logic
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const savedThemeMode = localStorage.getItem('theme-mode') || 'dark';
 
+  if (savedThemeMode === 'light') {
+    document.body.setAttribute('data-theme-style', 'light');
+  } else {
+    document.body.removeAttribute('data-theme-style');
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme-style') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme-style');
+        localStorage.setItem('theme-mode', 'dark');
+      } else {
+        document.body.setAttribute('data-theme-style', 'light');
+        localStorage.setItem('theme-mode', 'light');
+      }
+    });
+  }
 
   // 2. Interactive Like / Dislike Count
   const likeBtn = document.getElementById('like-btn');

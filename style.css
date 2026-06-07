@@ -18,6 +18,25 @@
   --glow-primary: 0 0 20px rgba(0, 171, 255, 0.5);
 }
 
+/* Light Mode Override */
+body[data-theme-style="light"] {
+  --bg-gradient: radial-gradient(circle at 30% 30%, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+  --dashboard-bg: rgba(253, 251, 248, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --widget-bg: rgba(246, 241, 236, 0.8);
+  --text-main: #3e332c;
+  --text-muted: #84766c;
+  --primary-color: #00abff;
+  --primary-rgb: 0, 171, 255;
+  --accent-peach: #e9c19d;
+  --accent-brown: #8b7d71;
+  --border-light: rgba(255, 255, 255, 0.5);
+  --shadow-sm: 0 4px 12px rgba(62, 51, 44, 0.05);
+  --shadow-md: 0 8px 24px rgba(62, 51, 44, 0.08);
+  --shadow-lg: 0 16px 48px rgba(62, 51, 44, 0.12);
+  --glow-primary: 0 0 15px rgba(0, 171, 255, 0.4);
+}
+
 /* Theme Variant: Electric Pink */
 [data-theme-style="pink"] {
   --bg-gradient: linear-gradient(135deg, #1e0b16 0%, #000000 100%);
@@ -144,6 +163,117 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Sun/Moon Theme Toggle Switch */
+.theme-toggle-switch {
+  width: 56px;
+  height: 28px;
+  border-radius: 20px;
+  background: var(--widget-bg);
+  border: 1px solid var(--border-light);
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 16px;
+  outline: none;
+}
+
+.theme-toggle-switch:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--glow-primary);
+}
+
+.switch-handle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  z-index: 3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-switch .icon-sun,
+.theme-toggle-switch .icon-moon {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Default (Dark Mode): Handle on the right, show Moon icon in handle */
+.switch-handle {
+  transform: translateX(28px);
+}
+
+.theme-toggle-switch .icon-moon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.theme-toggle-switch .icon-sun {
+  opacity: 0;
+  transform: scale(0.5) rotate(45deg);
+}
+
+/* Background Icons in track */
+.track-icon-moon,
+.track-icon-sun {
+  width: 12px;
+  height: 12px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.track-icon-moon {
+  left: 7px;
+}
+
+.track-icon-sun {
+  right: 7px;
+}
+
+/* Light Mode Overrides (When body has data-theme-style="light") */
+body[data-theme-style="light"] .switch-handle {
+  transform: translateX(0px);
+  background: #f59e0b; /* Golden Sun color in light mode */
+}
+
+body[data-theme-style="light"] .icon-sun {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+body[data-theme-style="light"] .icon-moon {
+  opacity: 0;
+  transform: scale(0.5) rotate(-45deg);
+}
+
+/* Mobile responsive layout overrides for theme-toggle-switch */
+@media (max-width: 1024px) {
+  .theme-toggle-switch {
+    margin-top: 0 !important;
+    margin-left: auto;
+    margin-right: 16px;
+  }
 }
 
 .mobile-header-actions {

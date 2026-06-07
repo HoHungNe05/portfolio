@@ -14,7 +14,7 @@
     rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="style.css?v=2.2">
+  <link rel="stylesheet" href="style.css?v=2.3">
 </head>
 
 <body>
@@ -40,6 +40,16 @@
               fill="none" />
           </svg>
         </div>
+
+        <!-- Sun/Moon Theme Toggle Switch -->
+        <button class="theme-toggle-switch" id="theme-toggle-btn" aria-label="Toggle Theme" title="Chuyển chế độ Sáng/Tối">
+          <div class="switch-handle">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+          </div>
+          <i data-lucide="moon" class="track-icon-moon"></i>
+          <i data-lucide="sun" class="track-icon-sun"></i>
+        </button>
 
         <!-- Mobile actions (hidden on desktop) -->
         <div class="mobile-header-actions">
@@ -386,7 +396,7 @@
   </div>
 
   <div id="youtube-player" style="display: none;"></div>
-  <script src="script.js?v=2.2"></script>
+  <script src="script.js?v=2.3"></script>
 </body>
 
 </html>
