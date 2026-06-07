@@ -247,4 +247,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     alert('Thank you for interacting with Hồ Văn Hùng\'s Profile! ✨');
   });
+
+  // Lightbox Modal for Media Carousel Images
+  const modal = document.getElementById('image-modal');
+  const modalImg = document.getElementById('modal-img-large');
+  const closeBtn = document.querySelector('.modal-close');
+
+  mediaImg.addEventListener('click', () => {
+    modal.classList.add('show');
+    modalImg.src = mediaImg.src;
+  });
+
+  // Close modal when clicking on the close button or outside the image
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target === closeBtn) {
+      modal.classList.remove('show');
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+      modal.classList.remove('show');
+    }
+  });
 });
