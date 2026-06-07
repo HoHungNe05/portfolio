@@ -14,7 +14,7 @@
     rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="style.css?v=1.8">
+  <link rel="stylesheet" href="style.css?v=1.9">
 </head>
 
 <body>
@@ -28,51 +28,73 @@
   <main class="dashboard-container">
 
     <!-- Left Sidebar -->
-    <aside class="sidebar-left">
-      <div class="sidebar-top">
+    <aside class="sidebar-left" id="sidebar-left">
+      <!-- Sidebar Header (always visible on mobile & desktop) -->
+      <div class="sidebar-header">
         <div class="logo">
           <!-- Stylized H Logo -->
           <svg viewBox="0 0 100 100" class="logo-svg">
             <path d="M30,20 L42,80" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none" />
             <path d="M58,20 L70,80" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none" />
-            <path d="M36,50 L64,50" stroke="var(--primary-color)" stroke-width="12" stroke-linecap="round" fill="none" />
+            <path d="M36,50 L64,50" stroke="var(--primary-color)" stroke-width="12" stroke-linecap="round"
+              fill="none" />
           </svg>
         </div>
-
-        <nav class="nav-menu">
-          <a href="#" class="nav-item" title="Trang Chủ"><i data-lucide="home"></i></a>
-          <a href="#" class="nav-item active" title="Star"><i data-lucide="star"></i></a>
-          <a href="#" class="nav-item" title="Gallery"><i data-lucide="camera"></i></a>
-          <a href="#" class="nav-item" title="Projects"><i data-lucide="briefcase"></i></a>
-        </nav>
-      </div>
-
-      <div class="sidebar-mid">
-        <div class="avatar-container">
-          <img src="avatar.jpg" alt="Avatar" class="avatar-img">
+        
+        <!-- Mobile actions (hidden on desktop) -->
+        <div class="mobile-header-actions">
+          <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+            <i data-lucide="menu" id="menu-icon"></i>
+          </button>
+          <div class="avatar-container mobile-avatar">
+            <img src="avatar.jpg" alt="Avatar" class="avatar-img">
+          </div>
         </div>
-        <a href="#" class="nav-item" title="Analytics"><i data-lucide="trending-up"></i></a>
       </div>
 
-      <div class="sidebar-bottom">
-        <div class="nav-group-pills">
-          <a href="https://www.facebook.com/vanhung.ho.75685962" target="_blank" class="nav-item" title="Facebook">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-            </svg>
-          </a>
-          <a href="https://www.tiktok.com/@hohungnek?_r=1&_t=ZS-971HAEjdiMu" target="_blank" class="nav-item" title="TikTok">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/hungnek_05/" target="_blank" class="nav-item" title="Instagram">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-            </svg>
-          </a>
+      <!-- Collapsible Sidebar Content (collapsible on mobile, normal sidebar sections on desktop) -->
+      <div class="sidebar-content" id="sidebar-content">
+        <div class="sidebar-top-group">
+          <nav class="nav-menu">
+            <a href="#" class="nav-item" title="Trang Chủ"><i data-lucide="home"></i></a>
+            <a href="#" class="nav-item active" title="Star"><i data-lucide="star"></i></a>
+            <a href="#" class="nav-item" title="Gallery"><i data-lucide="camera"></i></a>
+            <a href="#" class="nav-item" title="Projects"><i data-lucide="briefcase"></i></a>
+          </nav>
+        </div>
+
+        <div class="sidebar-mid-group">
+          <!-- Avatar container for desktop (hidden on mobile) -->
+          <div class="avatar-container desktop-avatar">
+            <img src="avatar.jpg" alt="Avatar" class="avatar-img">
+          </div>
+          <a href="#" class="nav-item analytics-link" title="Analytics"><i data-lucide="trending-up"></i></a>
+        </div>
+
+        <div class="sidebar-bottom-group">
+          <div class="nav-group-pills">
+            <a href="https://www.facebook.com/vanhung.ho.75685962" target="_blank" class="nav-item" title="Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@hohungnek?_r=1&_t=ZS-971HAEjdiMu" target="_blank" class="nav-item"
+              title="TikTok">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/hungnek_05/" target="_blank" class="nav-item" title="Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </aside>
@@ -277,7 +299,7 @@
   </div>
 
   <div id="youtube-player" style="display: none;"></div>
-  <script src="script.js?v=1.8"></script>
+  <script src="script.js?v=1.9"></script>
 </body>
 
 </html>

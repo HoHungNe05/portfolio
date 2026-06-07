@@ -271,4 +271,24 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.remove('show');
     }
   });
+
+  // Mobile menu toggle logic
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const sidebar = document.getElementById('sidebar-left');
+  const menuIcon = document.getElementById('menu-icon');
+
+  if (menuBtn && sidebar) {
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('menu-open');
+      const isOpen = sidebar.classList.contains('menu-open');
+      
+      // Toggle Lucide icon dynamically
+      if (isOpen) {
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        menuIcon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons(); // Re-render Lucide icons
+    });
+  }
 });
