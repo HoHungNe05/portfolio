@@ -78,12 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   likeBtn.addEventListener('click', async () => {
     if (hasLiked) {
-      alert('Bạn đã thích trang này rồi! Cảm ơn bạn nhé! ❤️');
+      alert('Thích rồi mà đòi rút lại à :))))');
       return;
     }
-    
+
     if (hasDisliked) {
-      alert('Bạn đang dislike trang này, hãy tải lại trang nếu muốn đổi ý nhé!');
+      alert('Ok Mình đã ghim... Dỗi');
       return;
     }
 
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch('https://abacus.jasoncameron.dev/hit/hohung_portfolio/likes');
       const data = await res.json();
       likeCountSpan.textContent = data.value;
-      
+
       hasLiked = true;
       localStorage.setItem('has-liked-hohung', 'true');
       likeBtn.classList.add('active');
@@ -112,12 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dislikeBtn.addEventListener('click', async () => {
     if (hasDisliked) {
-      alert('Bạn đã dislike trang này rồi! 😢');
+      alert('Mình ghim bạn rồi đấy');
       return;
     }
 
     if (hasLiked) {
-      alert('Bạn đang thích trang này rồi, cảm ơn bạn nhé!');
+      alert('Biết thích rồi, thích 1 lần thôi');
       return;
     }
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressBarContainer = document.getElementById('progress-bar-container');
   const prevTrackBtn = document.getElementById('prev-track');
   const nextTrackBtn = document.getElementById('next-track');
-  
+
   let isPlaying = false;
   let player = null;
   let isPlayerReady = false;
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       musicWidget.classList.remove('playing');
       lucide.createIcons();
       stopProgressTimer();
-      
+
       if (event.data === YT.PlayerState.ENDED) {
         progressFill.style.width = '0%';
         currentTimeSpan.textContent = "0:00";
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const duration = player.getDuration() || 225;
     const newTime = clickedPercentage * duration;
     player.seekTo(newTime, true);
-    
+
     progressFill.style.width = `${clickedPercentage * 100}%`;
     currentTimeSpan.textContent = formatTime(newTime);
   });
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mediaImg = document.getElementById('media-img');
   const mediaPrev = document.getElementById('media-prev');
   const mediaNext = document.getElementById('media-next');
-  
+
   // Carousel images array
   const mediaImages = ['media1.jpg', 'media2.jpg', 'media3.jpg'];
   let currentMediaIndex = 0;
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       currentMediaIndex = (currentMediaIndex - 1 + mediaImages.length) % mediaImages.length;
     }
-    
+
     // Add simple fade effect
     mediaImg.style.opacity = '0';
     setTimeout(() => {
@@ -327,11 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const ripple = document.createElement('span');
     ripple.classList.add('btn-ripple');
     pulseTouchBtn.appendChild(ripple);
-    
+
     setTimeout(() => {
       ripple.remove();
     }, 1000);
-    
+
     alert('Thank you for interacting with Hồ Văn Hùng\'s Profile! ✨');
   });
 
@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtn.addEventListener('click', () => {
       sidebar.classList.toggle('menu-open');
       const isOpen = sidebar.classList.contains('menu-open');
-      
+
       // Query the icon dynamically to avoid stale references after Lucide updates the DOM
       const currentMenuIcon = document.getElementById('menu-icon');
       if (currentMenuIcon) {
