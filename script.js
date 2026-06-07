@@ -294,32 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Theme Toggler & Control Center ---
-  const activeTheme = localStorage.getItem('theme-style') || 'default';
-  if (activeTheme !== 'default') {
-    document.body.setAttribute('data-theme-style', activeTheme);
-  }
 
-  const themePills = document.querySelectorAll('.theme-pill');
-  themePills.forEach(pill => {
-    if (pill.getAttribute('data-theme') === activeTheme) {
-      pill.classList.add('active');
-    } else {
-      pill.classList.remove('active');
-    }
-
-    pill.addEventListener('click', () => {
-      themePills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const targetTheme = pill.getAttribute('data-theme');
-      if (targetTheme === 'default') {
-        document.body.removeAttribute('data-theme-style');
-      } else {
-        document.body.setAttribute('data-theme-style', targetTheme);
-      }
-      localStorage.setItem('theme-style', targetTheme);
-    });
-  });
 
   // --- Single Page Navigation ---
   const navItems = document.querySelectorAll('.nav-item[data-page]');
