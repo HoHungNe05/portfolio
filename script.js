@@ -2,6 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lucide Icons
   lucide.createIcons();
 
+  // Dynamic Real-time Welcome Greeting
+  const welcomeGreeting = document.getElementById('welcome-greeting');
+  if (welcomeGreeting) {
+    const hours = new Date().getHours();
+    let greeting = "Xin chào! Mình là";
+    if (hours >= 5 && hours < 12) {
+      greeting = "Xin chào buổi sáng! Mình là";
+    } else if (hours >= 12 && hours < 14) {
+      greeting = "Xin chào buổi trưa! Mình là";
+    } else if (hours >= 14 && hours < 18) {
+      greeting = "Xin chào buổi chiều! Mình là";
+    } else {
+      greeting = "Xin chào buổi tối! Mình là";
+    }
+    welcomeGreeting.textContent = greeting;
+  }
+
 
 
   // 2. Interactive Like / Dislike Count
