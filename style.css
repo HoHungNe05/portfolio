@@ -1,21 +1,21 @@
 /* CSS Reset & Variables */
 :root {
-  /* Cream Theme (Default) */
-  --bg-gradient: radial-gradient(circle at 30% 30%, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
-  --dashboard-bg: rgba(253, 251, 248, 0.85);
-  --card-bg: rgba(255, 255, 255, 0.95);
-  --widget-bg: rgba(246, 241, 236, 0.8);
-  --text-main: #3e332c;
-  --text-muted: #84766c;
+  /* Dark Cyber Blue Theme (Default) */
+  --bg-gradient: linear-gradient(135deg, #070d19 0%, #000000 100%);
+  --dashboard-bg: rgba(10, 18, 36, 0.85);
+  --card-bg: rgba(16, 28, 54, 0.95);
+  --widget-bg: rgba(24, 40, 75, 0.8);
+  --text-main: #e2f1ff;
+  --text-muted: #8ea3bf;
   --primary-color: #00abff;
   --primary-rgb: 0, 171, 255;
-  --accent-peach: #e9c19d;
-  --accent-brown: #8b7d71;
-  --border-light: rgba(255, 255, 255, 0.5);
-  --shadow-sm: 0 4px 12px rgba(62, 51, 44, 0.05);
-  --shadow-md: 0 8px 24px rgba(62, 51, 44, 0.08);
-  --shadow-lg: 0 16px 48px rgba(62, 51, 44, 0.12);
-  --glow-primary: 0 0 15px rgba(0, 171, 255, 0.4);
+  --accent-peach: #38bdf8;
+  --accent-brown: #475569;
+  --border-light: rgba(0, 171, 255, 0.15);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 171, 255, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 171, 255, 0.15);
+  --glow-primary: 0 0 20px rgba(0, 171, 255, 0.5);
 }
 
 /* Theme Variant: Electric Pink */
