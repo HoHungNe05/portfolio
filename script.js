@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ripple.remove();
     }, 1000);
 
-    alert('Thank you for interacting with Hồ Văn Hùng\'s Profile! ✨');
+    alert('Chào bạn mình là Hùm đâyy');
   });
 
   // Lightbox Modal for Media Carousel Images
