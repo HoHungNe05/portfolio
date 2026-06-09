@@ -42,7 +42,8 @@
         </div>
 
         <!-- Sun/Moon Theme Toggle Switch -->
-        <button class="theme-toggle-switch" id="theme-toggle-btn" aria-label="Toggle Theme" title="Chuyển chế độ Sáng/Tối">
+        <button class="theme-toggle-switch" id="theme-toggle-btn" aria-label="Toggle Theme"
+          title="Chuyển chế độ Sáng/Tối">
           <div class="switch-handle">
             <i data-lucide="sun" class="icon-sun"></i>
             <i data-lucide="moon" class="icon-moon"></i>
@@ -70,6 +71,7 @@
             <a href="#" class="nav-item" title="Star" data-page="star"><i data-lucide="star"></i></a>
             <a href="#" class="nav-item" title="Gallery" data-page="gallery"><i data-lucide="camera"></i></a>
             <a href="#" class="nav-item" title="Projects" data-page="projects"><i data-lucide="briefcase"></i></a>
+            <a href="#" class="nav-item" title="CV" data-page="cv"><i data-lucide="file-text"></i></a>
           </nav>
         </div>
 
@@ -78,7 +80,6 @@
           <div class="avatar-container desktop-avatar">
             <img src="avatar.jpg" alt="Avatar" class="avatar-img">
           </div>
-          <a href="#" class="nav-item analytics-link" title="Analytics"><i data-lucide="trending-up"></i></a>
         </div>
 
         <div class="sidebar-bottom-group">
@@ -276,6 +277,167 @@
           <p>đây là lưu ảnh làm đc mà chưa có</p>
           <div class="coming-soon-badge">Coming Soon</div>
           <button class="btn-primary btn-back-home"><i data-lucide="arrow-left"></i>Quay lại Trang Chủ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 5: CV (Center panel) -->
+    <section class="cv-section page-section" id="page-cv">
+      <div class="page-cv-container">
+        <!-- CV Header Card -->
+        <div class="cv-header-card">
+          <div class="cv-profile-summary">
+            <div class="cv-avatar-frame">
+              <img src="avatar.jpg" alt="Hồ Văn Hùng CV" class="cv-avatar-img">
+            </div>
+            <div class="cv-meta">
+              <h1 class="cv-name">HỒ VĂN HÙNG</h1>
+              <span class="cv-title-tag">Chuyên ngành Thương Mại Điện Tử</span>
+              <p class="cv-subtitle">Sinh viên năm 3 | Đại học Kinh tế - Đại học Huế</p>
+            </div>
+          </div>
+          <button class="btn-primary btn-download-cv" id="btn-download-cv">
+            <i data-lucide="download"></i>
+            <span>Tải PDF CV</span>
+          </button>
+        </div>
+
+        <!-- CV Body Content -->
+        <div class="cv-body-grid">
+          <!-- Main Content Column -->
+          <div class="cv-main-col">
+            <!-- Career Objective -->
+            <div class="cv-card">
+              <h3><i data-lucide="target"></i>Mục Tiêu Nghề Nghiệp</h3>
+              <p>
+                Là sinh viên năm 3 chuyên ngành Thương Mại Điện Tử, mình mong muốn tìm kiếm cơ hội thực tập và làm việc
+                thực tế trong các lĩnh vực Quản trị E-Commerce, Thiết kế UI/UX hoặc Phát triển Website. Mình đặt mục
+                tiêu áp dụng những kiến thức đã học cùng tư duy sáng tạo của bản thân để tạo ra các giải pháp số tối ưu,
+                mang lại giá trị cao cho người dùng và doanh nghiệp, đồng thời không ngừng trau dồi các kỹ năng chuyên
+                môn mới.
+              </p>
+            </div>
+
+            <!-- Education -->
+            <div class="cv-card">
+              <h3><i data-lucide="graduation-cap"></i>Học Vấn</h3>
+              <div class="cv-timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>Đại học Kinh tế - Đại học Huế</h4>
+                    <span class="timeline-date">2023 - Hiện tại</span>
+                  </div>
+                  <p class="timeline-subtitle">Chuyên ngành: Thương Mại Điện Tử (Lớp K57B)</p>
+                  <p class="timeline-desc">Khoa Marketing và Thương mại. Đang tích lũy các kiến thức về Quản trị
+                    E-Commerce, Marketing điện tử, Phân tích dữ liệu kinh doanh và Thiết kế hệ thống thông tin quản lý.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="cv-card">
+              <h3><i data-lucide="folder-git-2"></i>Dự Án Cá Nhân</h3>
+              <div class="cv-timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>Personal Dashboard Portfolio</h4>
+                    <span class="timeline-date">2026</span>
+                  </div>
+                  <p class="timeline-subtitle">Vai trò: Thiết kế & Lập trình viên Front-End</p>
+                  <p class="timeline-desc">Xây dựng trang Web Portfolio cá nhân dạng bảng điều khiển (Dashboard) với
+                    giao diện Cyber-Blue tối/sáng năng động. Tích hợp thư viện biểu tượng Lucide, IFrame API của YouTube
+                    để nghe nhạc và gọi API truy xuất lượt thích/không thích thời gian thực.</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>E-Commerce Store Mockup Design</h4>
+                    <span class="timeline-date">2025</span>
+                  </div>
+                  <p class="timeline-subtitle">Vai trò: Thiết kế UI/UX</p>
+                  <p class="timeline-desc">Lên ý tưởng và thiết kế giao diện Mockup cho ứng dụng thương mại điện tử
+                    chuyên nghiệp. Sử dụng Figma, Canva và Photoshop để tối ưu hóa trải nghiệm người dùng từ trang chủ,
+                    danh sách sản phẩm đến trang thanh toán.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="cv-side-col">
+            <!-- Contact Info -->
+            <div class="cv-card contact-card">
+              <h3><i data-lucide="phone"></i>Thông Tin Liên Hệ</h3>
+              <ul class="contact-list">
+                <li>
+                  <i data-lucide="map-pin"></i>
+                  <span>Quảng Trị, Việt Nam</span>
+                </li>
+                <li>
+                  <i data-lucide="mail"></i>
+                  <a href="mailto:hungnhinho0987@gmail.com">hungnhinho0987@gmail.com</a>
+                </li>
+                <li>
+                  <i data-lucide="phone-call"></i>
+                  <span>085 944 0898</span>
+                </li>
+                <li>
+                  <i data-lucide="facebook"></i>
+                  <a href="https://www.facebook.com/vanhung.ho.75685962" target="_blank">Hồ Văn Hùng</a>
+                </li>
+                <li>
+                  <i data-lucide="instagram"></i>
+                  <a href="https://www.instagram.com/hungnek_05/" target="_blank">@hungnek_05</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Skills -->
+            <div class="cv-card">
+              <h3><i data-lucide="wrench"></i>Kỹ Năng</h3>
+              <div class="cv-skills-group">
+                <div class="skill-category">
+                  <h5>Thiết kế & Sáng tạo</h5>
+                  <div class="skills-list">
+                    <span class="skill-tag">Canva</span>
+                    <span class="skill-tag">CapCut</span>
+                    <span class="skill-tag">Photoshop</span>
+                    <span class="skill-tag">Illustrator</span>
+                  </div>
+                </div>
+                <div class="skill-category">
+                  <h5>Kỹ thuật & Công cụ</h5>
+                  <div class="skills-list">
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">MS Office</span>
+                    <span class="skill-tag">E-Commerce Platforms</span>
+                  </div>
+                </div>
+                <div class="skill-category">
+                  <h5>Kỹ năng mềm</h5>
+                  <div class="skills-list">
+                    <span class="skill-tag">Làm việc nhóm</span>
+                    <span class="skill-tag">Giải quyết vấn đề</span>
+                    <span class="skill-tag">Giao tiếp</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interests -->
+            <div class="cv-card">
+              <h3><i data-lucide="heart"></i>Sở Thích</h3>
+              <div class="skills-list">
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Rap Music</span>
+                <span class="skill-tag">Billiards</span>
+                <span class="skill-tag">Travel</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bgIndex = document.querySelector('.bg-index');
     if (bgIndex) {
-      const indexes = { home: '01', star: '02', gallery: '03', projects: '04' };
+      const indexes = { home: '01', star: '02', gallery: '03', projects: '04', cv: '05' };
       bgIndex.textContent = indexes[pageId] || '01';
     }
 
@@ -487,5 +487,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const initialActiveNav = document.querySelector('.nav-item.active[data-page]');
   if (initialActiveNav && initialActiveNav.getAttribute('data-page') === 'home') {
     animateSkillsProgress();
+  }
+
+  // Download/Print CV logic
+  const downloadCvBtn = document.getElementById('btn-download-cv');
+  if (downloadCvBtn) {
+    downloadCvBtn.addEventListener('click', () => {
+      window.print();
+    });
   }
 });
