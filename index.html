@@ -14,7 +14,9 @@
     rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="style.css?v=2.3">
+  <!-- face-api.js CDN (vladmandic fork) -->
+  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 
 <body>
@@ -22,7 +24,101 @@
   <!-- Top-left background index -->
   <div class="bg-index">01</div>
 
+  <!-- ============================================================ -->
+  <!-- ADMIN EDIT MODE TOOLBAR (hidden by default) -->
+  <!-- ============================================================ -->
+  <div class="admin-toolbar" id="admin-toolbar">
+    <div class="admin-toolbar-left">
+      <span class="admin-status-dot"></span>
+      <span class="admin-status-text">Chế độ Admin đang hoạt động</span>
+    </div>
+    <div class="admin-toolbar-right">
+      <button class="admin-btn admin-btn-save" id="admin-save-btn">
+        <i data-lucide="save"></i>
+        <span>Lưu thay đổi</span>
+      </button>
+      <button class="admin-btn admin-btn-reset" id="admin-reset-btn">
+        <i data-lucide="rotate-ccw"></i>
+        <span>Khôi phục</span>
+      </button>
+      <button class="admin-btn admin-btn-exit" id="admin-exit-btn">
+        <i data-lucide="lock"></i>
+        <span>Thoát Admin</span>
+      </button>
+    </div>
+  </div>
 
+  <!-- ============================================================ -->
+  <!-- FACE SCANNER MODAL -->
+  <!-- ============================================================ -->
+  <div class="face-scanner-overlay" id="face-scanner-overlay">
+    <div class="face-scanner-modal">
+      <!-- Header -->
+      <div class="scanner-header">
+        <div class="scanner-title-area">
+          <div class="scanner-icon-ring">
+            <i data-lucide="scan-face"></i>
+          </div>
+          <div>
+            <h2 class="scanner-title">XÁC THỰC KHUÔN MẶT</h2>
+            <p class="scanner-subtitle">Hệ thống nhận diện AI đang khởi động...</p>
+          </div>
+        </div>
+        <button class="scanner-close-btn" id="scanner-close-btn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Video feed box -->
+      <div class="scanner-video-box">
+        <video id="scanner-video" autoplay muted playsinline></video>
+        <canvas id="scanner-canvas"></canvas>
+        <!-- Laser sweep line -->
+        <div class="laser-sweep" id="laser-sweep"></div>
+        <!-- Corner markers -->
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        <!-- Face target box (shows when face found) -->
+        <div class="face-target-box" id="face-target-box"></div>
+        <!-- Status overlay text -->
+        <div class="scanner-video-status" id="scanner-video-status">
+          <span>Đang khởi động camera...</span>
+        </div>
+      </div>
+
+      <!-- Log / Progress -->
+      <div class="scanner-log" id="scanner-log">
+        <div class="log-entry" id="log-model">
+          <span class="log-dot pending"></span>
+          <span class="log-text">Tải mô hình AI nhận diện khuôn mặt</span>
+        </div>
+        <div class="log-entry" id="log-camera">
+          <span class="log-dot pending"></span>
+          <span class="log-text">Kết nối camera</span>
+        </div>
+        <div class="log-entry" id="log-reference">
+          <span class="log-dot pending"></span>
+          <span class="log-text">Đọc dữ liệu khuôn mặt tham chiếu</span>
+        </div>
+        <div class="log-entry" id="log-scanning">
+          <span class="log-dot pending"></span>
+          <span class="log-text">Đang quét & so khớp khuôn mặt...</span>
+        </div>
+      </div>
+
+      <!-- Result message -->
+      <div class="scanner-result" id="scanner-result"></div>
+    </div>
+  </div>
+
+  <!-- Hidden file inputs for image uploads (used in edit mode) -->
+  <input type="file" id="upload-avatar" accept="image/*" style="display:none">
+  <input type="file" id="upload-hero-photo" accept="image/*" style="display:none">
+  <input type="file" id="upload-media1" accept="image/*" style="display:none">
+  <input type="file" id="upload-media2" accept="image/*" style="display:none">
+  <input type="file" id="upload-media3" accept="image/*" style="display:none">
 
   <!-- Main Container -->
   <main class="dashboard-container">
@@ -57,13 +153,16 @@
           <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
             <i data-lucide="menu" id="menu-icon"></i>
           </button>
-          <div class="avatar-container mobile-avatar">
-            <img src="avatar.jpg" alt="Avatar" class="avatar-img">
+          <div class="avatar-container mobile-avatar" id="mobile-avatar-container" title="Click để xem ảnh">
+            <img src="avatar.jpg" alt="Avatar" class="avatar-img" id="mobile-avatar-img">
+            <div class="avatar-edit-overlay" id="mobile-avatar-edit-overlay">
+              <i data-lucide="camera"></i>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Collapsible Sidebar Content (collapsible on mobile, normal sidebar sections on desktop) -->
+      <!-- Collapsible Sidebar Content -->
       <div class="sidebar-content" id="sidebar-content">
         <div class="sidebar-top-group">
           <nav class="nav-menu">
@@ -77,12 +176,20 @@
 
         <div class="sidebar-mid-group">
           <!-- Avatar container for desktop (hidden on mobile) -->
-          <div class="avatar-container desktop-avatar">
-            <img src="avatar.jpg" alt="Avatar" class="avatar-img">
+          <div class="avatar-container desktop-avatar" id="desktop-avatar-container" title="Click để xem ảnh">
+            <img src="avatar.jpg" alt="Avatar" class="avatar-img" id="desktop-avatar-img">
+            <div class="avatar-edit-overlay" id="desktop-avatar-edit-overlay">
+              <i data-lucide="camera"></i>
+            </div>
           </div>
         </div>
 
         <div class="sidebar-bottom-group">
+          <!-- Face ID Admin Button -->
+          <button class="nav-item face-id-btn" id="face-id-btn" title="Xác thực Admin - Nhận diện khuôn mặt">
+            <i data-lucide="scan-face"></i>
+          </button>
+
           <div class="nav-group-pills">
             <a href="https://www.facebook.com/vanhung.ho.75685962" target="_blank" class="nav-item" title="Facebook">
               <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
@@ -114,7 +221,11 @@
     <section class="hero-section page-section" id="page-star">
       <div class="photo-card-wrapper">
         <!-- Main Photo -->
-        <img src="avatar.jpg" alt="Hồ Văn Hùng" class="main-hero-photo">
+        <img src="avatar.jpg" alt="Hồ Văn Hùng" class="main-hero-photo" id="hero-photo">
+        <div class="hero-photo-edit-overlay" id="hero-photo-edit-overlay">
+          <i data-lucide="camera"></i>
+          <span>Đổi ảnh</span>
+        </div>
 
         <!-- Notches & Widgets Overlaid -->
         <!-- Top Left: Back to Home -->
@@ -148,14 +259,17 @@
           <div class="personal-info-card">
             <div class="tag-row">
               <span class="info-pill-label">Họ Tên</span>
-              <span class="info-pill-value">Hồ Văn Hùng</span>
+              <span class="info-pill-value" id="editable-name" data-key="name">Hồ Văn Hùng</span>
             </div>
 
             <div class="birthday-container">
               <div class="birthday-label">Ngày Sinh</div>
               <div class="birthday-value">
-                <span class="day">14</span>
-                <span class="month-year">Tháng 5<br>2005</span>
+                <span class="day" id="editable-day" data-key="birth-day">14</span>
+                <span class="month-year">
+                  <span id="editable-month" data-key="birth-month">Tháng 5</span><br>
+                  <span id="editable-year" data-key="birth-year">2005</span>
+                </span>
               </div>
             </div>
 
@@ -170,14 +284,14 @@
           </div>
         </div>
 
-        <!-- Bottom Right: Accent Callout "Jazzlyn X Trisha" -->
+        <!-- Bottom Right: Accent Callout -->
         <div class="notch bottom-right-notch">
           <div class="callout-card">
             <h2 class="handwritten-title">Hồ Văn Hùng</h2>
             <div class="stats-row">
               <div class="stat-item">
                 <i data-lucide="heart" class="icon-stat text-primary"></i>
-                <span class="stat-number">0</span>
+                <span class="stat-number" id="stat-likes">0</span>
               </div>
               <div class="stat-item">
                 <i data-lucide="star" class="icon-stat text-gold"></i>
@@ -200,8 +314,8 @@
         <!-- Welcome Card -->
         <div class="home-welcome-card">
           <span class="welcome-handwritten" id="welcome-greeting">Xin chào! Mình là</span>
-          <h1 class="welcome-name">HỒ VĂN HÙNG</h1>
-          <p class="welcome-sub">Đại Học Kinh Tế Huế - K57B Thương Mại Điện Tử</p>
+          <h1 class="welcome-name" id="editable-welcome-name" data-key="welcome-name">HỒ VĂN HÙNG</h1>
+          <p class="welcome-sub" id="editable-welcome-sub" data-key="welcome-sub">Đại Học Kinh Tế Huế - K57B Thương Mại Điện Tử</p>
           <div class="welcome-actions">
             <button class="btn-primary" id="btn-explore-projects">Khám Phá Dự Án</button>
             <button class="btn-secondary" id="btn-contact-fb">Liên Hệ Ngay</button>
@@ -213,11 +327,11 @@
           <!-- Bio Card -->
           <div class="home-card">
             <h3><i data-lucide="user"></i>Giới Thiệu</h3>
-            <p>
+            <p id="editable-bio1" data-key="bio1">
               Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế
               Đại Học Huế.
             </p>
-            <p>
+            <p id="editable-bio2" data-key="bio2">
               Mình đang học khóa K57B Nghành Thương Mại Điện Tử thuộc khoa Marketing và Thương Mại.
             </p>
           </div>
@@ -288,7 +402,7 @@
         <div class="cv-header-card">
           <div class="cv-profile-summary">
             <div class="cv-avatar-frame">
-              <img src="avatar.jpg" alt="Hồ Văn Hùng CV" class="cv-avatar-img">
+              <img src="avatar.jpg" alt="Hồ Văn Hùng CV" class="cv-avatar-img" id="cv-avatar-img">
             </div>
             <div class="cv-meta">
               <h1 class="cv-name">HỒ VĂN HÙNG</h1>
@@ -541,6 +655,11 @@
         <div class="media-carousel-container">
           <div class="media-crop-frame">
             <img src="media1.jpg" alt="Hồ Văn Hùng Media" class="media-carousel-img" id="media-img">
+            <!-- Edit overlay for media images -->
+            <div class="media-edit-overlay" id="media-edit-overlay">
+              <i data-lucide="camera"></i>
+              <span>Đổi ảnh</span>
+            </div>
           </div>
         </div>
       </div>
@@ -558,7 +677,7 @@
   </div>
 
   <div id="youtube-player" style="display: none;"></div>
-  <script src="script.js?v=2.5"></script>
+  <script src="script.js?v=3.0"></script>
 </body>
 
 </html>
