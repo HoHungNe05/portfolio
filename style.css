@@ -1359,7 +1359,8 @@ body[data-theme-style="light"] .icon-moon {
 
 .welcome-name {
   font-size: 2.8rem;
-  font-weight: 800;
+  font-weight: 900;
+  -webkit-text-stroke: 1px var(--text-main);
   letter-spacing: -1.2px;
   line-height: 1.1;
   color: var(--text-main);
