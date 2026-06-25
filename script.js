@@ -447,9 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('ℹ️ Bạn đã đăng nhập rồi. Dùng nút Thoát Admin để khóa.', 'warning');
       return;
     }
-    
-    const password = prompt('Vui lòng nhập mật khẩu Admin (mặc định: 123456):');
-    if (password === '123456') { 
+
+    const password = prompt('Nhập mật khẩu để chỉnh sửa:');
+    if (password === 'Hung0234') {
       adminUnlocked = true;
       sessionStorage.setItem('admin-unlocked', 'true');
       enableAdminMode(true);
