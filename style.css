@@ -2045,7 +2045,8 @@ body[data-theme-style="light"] .icon-moon {
 
 .cv-name {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
+  -webkit-text-stroke: 1px var(--text-main);
   letter-spacing: -0.5px;
   line-height: 1.1;
   color: var(--text-main);
