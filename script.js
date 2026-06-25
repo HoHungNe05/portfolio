@@ -436,7 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (initialActiveNav && initialActiveNav.getAttribute('data-page') === 'home') animateSkillsProgress();
 
   const downloadCvBtn = document.getElementById('btn-download-cv');
-  if (downloadCvBtn) downloadCvBtn.addEventListener('click', () => window.print());
 
   // ============================================================
   //  FACE ID BUTTON -> OPEN SCANNER

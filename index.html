@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -328,25 +328,35 @@
           <div class="home-card">
             <h3><i data-lucide="user"></i>Giới Thiệu</h3>
             <p id="editable-bio1" data-key="bio1">
-              Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế
-              Đại Học Huế.
+              Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế Đại Học Huế.
             </p>
             <p id="editable-bio2" data-key="bio2">
-              Mình đang học khóa K57B Nghành Thương Mại Điện Tử thuộc khoa Marketing và Thương Mại.
+              Mình đang học khoá K57B Ngành Thương Mại Điện Tử thuộc khoa Marketing và Thương Mại.
             </p>
           </div>
 
           <!-- Skills Card -->
           <div class="home-card">
             <h3><i data-lucide="cpu"></i>Kỹ Năng</h3>
-            <div class="skills-list">
-              <span class="skill-tag">Microsoft Office</span>
-              <span class="skill-tag">Canva</span>
-              <span class="skill-tag">CapCut</span>
-              <span class="skill-tag">Photoshop</span>
-              <span class="skill-tag">Adobe Illustrator</span>
-              <span class="skill-tag">HTML/CSS</span>
-
+            <div class="cv-skills-group" style="gap: 15px; margin-bottom: 15px;">
+              <div class="skill-category">
+                <h5 style="margin-bottom: 8px; color: var(--primary-color);">Kỹ năng cứng</h5>
+                <div class="skills-list">
+                  <span class="skill-tag">Chỉnh Sửa Ảnh</span>
+                  <span class="skill-tag">Chỉnh Sửa Video</span>
+                  <span class="skill-tag">Sáng Tạo Nội Dung</span>
+                  <span class="skill-tag">Tin Học Văn Phòng</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h5 style="margin-bottom: 8px; color: var(--primary-color);">Kỹ năng mềm</h5>
+                <div class="skills-list">
+                  <span class="skill-tag">Lắng Nghe</span>
+                  <span class="skill-tag">Giao Tiếp</span>
+                  <span class="skill-tag">Giải Quyết Vấn Đề</span>
+                  <span class="skill-tag">Quản Lý Thời Gian</span>
+                </div>
+              </div>
             </div>
             <div class="stats-grid" style="margin-top: 10px;">
               <div class="skill-progress-bar">
@@ -410,10 +420,10 @@
               <p class="cv-subtitle">Sinh viên năm 3 | Đại học Kinh tế - Đại học Huế</p>
             </div>
           </div>
-          <button class="btn-primary btn-download-cv" id="btn-download-cv">
+          <a href="Ho_Van_Hung_CV.pdf" download="Ho_Van_Hung_CV.pdf" class="btn-primary btn-download-cv" id="btn-download-cv" style="text-decoration: none;">
             <i data-lucide="download"></i>
             <span>Tải PDF CV</span>
-          </button>
+          </a>
         </div>
 
         <!-- CV Body Content -->
@@ -422,13 +432,11 @@
           <div class="cv-main-col">
             <!-- Career Objective -->
             <div class="cv-card">
-              <h3><i data-lucide="target"></i>Mục Tiêu Nghề Nghiệp</h3>
+              <h3><i data-lucide="user"></i>Giới Thiệu</h3>
               <p>
-                Là sinh viên năm 3 chuyên ngành Thương Mại Điện Tử, mình mong muốn tìm kiếm cơ hội thực tập và làm việc
-                thực tế trong các lĩnh vực Quản trị E-Commerce, Thiết kế UI/UX hoặc Phát triển Website. Mình đặt mục
-                tiêu áp dụng những kiến thức đã học cùng tư duy sáng tạo của bản thân để tạo ra các giải pháp số tối ưu,
-                mang lại giá trị cao cho người dùng và doanh nghiệp, đồng thời không ngừng trau dồi các kỹ năng chuyên
-                môn mới.
+                Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế Đại Học Huế.
+                <br><br>
+                Mình đang học khoá K57B Ngành Thương Mại Điện Tử thuộc khoa Marketing và Thương Mại.
               </p>
             </div>
 
@@ -439,42 +447,61 @@
                 <div class="timeline-item">
                   <div class="timeline-dot"></div>
                   <div class="timeline-header">
-                    <h4>Đại học Kinh tế - Đại học Huế</h4>
-                    <span class="timeline-date">2023 - Hiện tại</span>
+                    <h4>Đại học Kinh Tế Huế - HCE</h4>
+                    <span class="timeline-date">2022</span>
                   </div>
-                  <p class="timeline-subtitle">Chuyên ngành: Thương Mại Điện Tử (Lớp K57B)</p>
-                  <p class="timeline-desc">Khoa Marketing và Thương mại. Đang tích lũy các kiến thức về Quản trị
-                    E-Commerce, Marketing điện tử, Phân tích dữ liệu kinh doanh và Thiết kế hệ thống thông tin quản lý.
-                  </p>
+                  <p class="timeline-subtitle">NGÀNH THƯƠNG MẠI ĐIỆN TỬ</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>Trung tâm Tiếng Anh</h4>
+                    <span class="timeline-date">2026</span>
+                  </div>
+                  <p class="timeline-subtitle">CHỨNG CHỈ B1</p>
                 </div>
               </div>
             </div>
 
             <!-- Projects -->
             <div class="cv-card">
-              <h3><i data-lucide="folder-git-2"></i>Dự Án Cá Nhân</h3>
+              <h3><i data-lucide="briefcase"></i>Kinh Nghiệm Làm Việc</h3>
               <div class="cv-timeline">
                 <div class="timeline-item">
                   <div class="timeline-dot"></div>
                   <div class="timeline-header">
-                    <h4>Personal Dashboard Portfolio</h4>
-                    <span class="timeline-date">2026</span>
+                    <h4>THÁI THU MARKETING</h4>
+                    <span class="timeline-date">2026 - Nay</span>
                   </div>
-                  <p class="timeline-subtitle">Vai trò: Thiết kế & Lập trình viên Front-End</p>
-                  <p class="timeline-desc">Xây dựng trang Web Portfolio cá nhân dạng bảng điều khiển (Dashboard) với
-                    giao diện Cyber-Blue tối/sáng năng động. Tích hợp thư viện biểu tượng Lucide, IFrame API của YouTube
-                    để nghe nhạc và gọi API truy xuất lượt thích/không thích thời gian thực.</p>
+                  <p class="timeline-subtitle">Thực tập viên Marketing</p>
+                  <p class="timeline-desc">Chịu trách nhiệm lên ý tưởng, viết nội dung truyền thông và trực tiếp thiết kế poster, banner theo bộ nhận diện thương hiệu. Quá trình làm việc giúp tôi thành thạo kỹ năng sáng tạo nội dung, copywriting, tối ưu tư duy thẩm mỹ bố cục trên các công cụ thiết kế, đồng thời rèn luyện kỹ năng làm việc nhóm và thích nghi nhanh với áp lực môi trường Agency.</p>
                 </div>
                 <div class="timeline-item">
                   <div class="timeline-dot"></div>
                   <div class="timeline-header">
-                    <h4>E-Commerce Store Mockup Design</h4>
-                    <span class="timeline-date">2025</span>
+                    <h4>CONTENT CREATOR</h4>
+                    <span class="timeline-date">2026 - Nay</span>
                   </div>
-                  <p class="timeline-subtitle">Vai trò: Thiết kế UI/UX</p>
-                  <p class="timeline-desc">Lên ý tưởng và thiết kế giao diện Mockup cho ứng dụng thương mại điện tử
-                    chuyên nghiệp. Sử dụng Figma, Canva và Photoshop để tối ưu hóa trải nghiệm người dùng từ trang chủ,
-                    danh sách sản phẩm đến trang thanh toán.</p>
+                  <p class="timeline-subtitle">Kênh TikTok "Dạo Khắp Huế"</p>
+                  <p class="timeline-desc">Kỹ năng nghiên cứu xu hướng, lên ý tưởng, viết kịch bản, quay dựng video và quản trị kênh TikTok Review tại Huế, xuất sắc đạt các video viral tiếp cận hàng trăm nghìn người xem. Qua dự án, tôi đã làm chủ kỹ năng nắm bắt visual trend, sản xuất video ngắn, thấu hiểu hành vi người dùng trên nền tảng số và sở hữu tư duy nhạy bén trong việc xây dựng thương hiệu cá nhân.</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>CLB KĨ NĂNG MỀM - C4S2</h4>
+                    <span class="timeline-date">2024 - 2025</span>
+                  </div>
+                  <p class="timeline-subtitle">Ban chủ nhiệm thế hệ F15</p>
+                  <p class="timeline-desc">Quản lý thành viên, lên ý tưởng và trực tiếp điều phối tổ chức các sự kiện lớn nhỏ của CLB, tiêu biểu là vai trò Leader dẫn dắt chương trình Amazing Race 2024. Trải nghiệm này giúp tôi phát triển toàn diện năng lực lãnh đạo, kỹ năng giao tiếp, quản trị rủi ro và giải quyết vấn đề hiệu quả trong môi trường đội nhóm áp lực cao.</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>DỊCH VỤ KHÁCH HÀNG</h4>
+                    <span class="timeline-date">2022 - 2025</span>
+                  </div>
+                  <p class="timeline-subtitle">Nhân viên đa lĩnh vực</p>
+                  <p class="timeline-desc">Tích lũy nhiều năm kinh nghiệm thực chiến qua các vai trò nhân viên quán cà phê, CLB bida, tư vấn bán điện thoại và giao nhận hàng hóa. Quá trình làm việc đa dạng ngành nghề giúp tôi thành thạo kỹ năng giao tiếp, xử lý tình huống linh hoạt và thấu hiểu sâu sắc tâm lý nhiều phân khúc khách hàng. Đây là vốn sống thực tế phong phú giúp tôi xây dựng tư duy nhạy bén và thực chiến trong ngành Content Marketing.</p>
                 </div>
               </div>
             </div>
@@ -488,7 +515,7 @@
               <ul class="contact-list">
                 <li>
                   <i data-lucide="map-pin"></i>
-                  <span>Quảng Trị, Việt Nam</span>
+                  <span>An Cựu, Thành Phố Huế, Tỉnh Thừa Thiên Huế</span>
                 </li>
                 <li>
                   <i data-lucide="mail"></i>
@@ -496,14 +523,20 @@
                 </li>
                 <li>
                   <i data-lucide="phone-call"></i>
-                  <span>085 944 0898</span>
+                  <span>0876270835</span>
                 </li>
                 <li>
-                  <i data-lucide="facebook"></i>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
                   <a href="https://www.facebook.com/vanhung.ho.75685962" target="_blank">Hồ Văn Hùng</a>
                 </li>
                 <li>
-                  <i data-lucide="instagram"></i>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
                   <a href="https://www.instagram.com/hungnek_05/" target="_blank">@hungnek_05</a>
                 </li>
               </ul>
@@ -514,41 +547,46 @@
               <h3><i data-lucide="wrench"></i>Kỹ Năng</h3>
               <div class="cv-skills-group">
                 <div class="skill-category">
-                  <h5>Thiết kế & Sáng tạo</h5>
+                  <h5>Kỹ năng cứng</h5>
                   <div class="skills-list">
-                    <span class="skill-tag">Canva</span>
-                    <span class="skill-tag">CapCut</span>
-                    <span class="skill-tag">Photoshop</span>
-                    <span class="skill-tag">Illustrator</span>
-                  </div>
-                </div>
-                <div class="skill-category">
-                  <h5>Kỹ thuật & Công cụ</h5>
-                  <div class="skills-list">
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">MS Office</span>
-                    <span class="skill-tag">E-Commerce Platforms</span>
+                    <span class="skill-tag">Chỉnh Sửa Ảnh</span>
+                    <span class="skill-tag">Chỉnh Sửa Video</span>
+                    <span class="skill-tag">Sáng Tạo Nội Dung</span>
+                    <span class="skill-tag">Tin Học Văn Phòng</span>
                   </div>
                 </div>
                 <div class="skill-category">
                   <h5>Kỹ năng mềm</h5>
                   <div class="skills-list">
-                    <span class="skill-tag">Làm việc nhóm</span>
-                    <span class="skill-tag">Giải quyết vấn đề</span>
-                    <span class="skill-tag">Giao tiếp</span>
+                    <span class="skill-tag">Lắng Nghe</span>
+                    <span class="skill-tag">Giao Tiếp</span>
+                    <span class="skill-tag">Giải Quyết Vấn Đề</span>
+                    <span class="skill-tag">Quản Lý Thời Gian</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Interests -->
+            <!-- Achievements -->
             <div class="cv-card">
-              <h3><i data-lucide="heart"></i>Sở Thích</h3>
-              <div class="skills-list">
-                <span class="skill-tag">UI/UX Design</span>
-                <span class="skill-tag">Rap Music</span>
-                <span class="skill-tag">Billiards</span>
-                <span class="skill-tag">Travel</span>
+              <h3><i data-lucide="award"></i>Thành Tựu</h3>
+              <div class="cv-timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>CLB Kĩ Năng Mềm C4S2</h4>
+                    <span class="timeline-date">2024</span>
+                  </div>
+                  <p class="timeline-subtitle">BAN CHỦ NHIỆM F15 CLB KĨ NĂNG MỀM C4S2</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-header">
+                    <h4>Đại học Kinh Tế Huế - HUE</h4>
+                    <span class="timeline-date">2025</span>
+                  </div>
+                  <p class="timeline-subtitle">ĐẠT DANH HIỆU SINH VIÊN GIỎI NGÀNH THƯƠNG MẠI ĐIỆN TỬ</p>
+                </div>
               </div>
             </div>
           </div>
