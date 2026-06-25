@@ -10,12 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- face-api.js CDN (vladmandic fork) -->
-  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
   <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 
@@ -45,71 +43,6 @@
         <i data-lucide="lock"></i>
         <span>Thoát Admin</span>
       </button>
-    </div>
-  </div>
-
-  <!-- ============================================================ -->
-  <!-- FACE SCANNER MODAL -->
-  <!-- ============================================================ -->
-  <div class="face-scanner-overlay" id="face-scanner-overlay">
-    <div class="face-scanner-modal">
-      <!-- Header -->
-      <div class="scanner-header">
-        <div class="scanner-title-area">
-          <div class="scanner-icon-ring">
-            <i data-lucide="scan-face"></i>
-          </div>
-          <div>
-            <h2 class="scanner-title">XÁC THỰC KHUÔN MẶT</h2>
-            <p class="scanner-subtitle">Hệ thống nhận diện AI đang khởi động...</p>
-          </div>
-        </div>
-        <button class="scanner-close-btn" id="scanner-close-btn">
-          <i data-lucide="x"></i>
-        </button>
-      </div>
-
-      <!-- Video feed box -->
-      <div class="scanner-video-box">
-        <video id="scanner-video" autoplay muted playsinline></video>
-        <canvas id="scanner-canvas"></canvas>
-        <!-- Laser sweep line -->
-        <div class="laser-sweep" id="laser-sweep"></div>
-        <!-- Corner markers -->
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
-        <!-- Face target box (shows when face found) -->
-        <div class="face-target-box" id="face-target-box"></div>
-        <!-- Status overlay text -->
-        <div class="scanner-video-status" id="scanner-video-status">
-          <span>Đang khởi động camera...</span>
-        </div>
-      </div>
-
-      <!-- Log / Progress -->
-      <div class="scanner-log" id="scanner-log">
-        <div class="log-entry" id="log-model">
-          <span class="log-dot pending"></span>
-          <span class="log-text">Tải mô hình AI nhận diện khuôn mặt</span>
-        </div>
-        <div class="log-entry" id="log-camera">
-          <span class="log-dot pending"></span>
-          <span class="log-text">Kết nối camera</span>
-        </div>
-        <div class="log-entry" id="log-reference">
-          <span class="log-dot pending"></span>
-          <span class="log-text">Đọc dữ liệu khuôn mặt tham chiếu</span>
-        </div>
-        <div class="log-entry" id="log-scanning">
-          <span class="log-dot pending"></span>
-          <span class="log-text">Đang quét & so khớp khuôn mặt...</span>
-        </div>
-      </div>
-
-      <!-- Result message -->
-      <div class="scanner-result" id="scanner-result"></div>
     </div>
   </div>
 
@@ -185,9 +118,9 @@
         </div>
 
         <div class="sidebar-bottom-group">
-          <!-- Face ID Admin Button -->
-          <button class="nav-item face-id-btn" id="face-id-btn" title="Xác thực Admin - Nhận diện khuôn mặt">
-            <i data-lucide="scan-face"></i>
+          <!-- Admin Login Button -->
+          <button class="nav-item face-id-btn" id="face-id-btn" title="Chế độ Admin">
+            <i data-lucide="lock"></i>
           </button>
 
           <div class="nav-group-pills">
@@ -315,7 +248,8 @@
         <div class="home-welcome-card">
           <span class="welcome-handwritten" id="welcome-greeting">Xin chào! Mình là</span>
           <h1 class="welcome-name" id="editable-welcome-name" data-key="welcome-name">HỒ VĂN HÙNG</h1>
-          <p class="welcome-sub" id="editable-welcome-sub" data-key="welcome-sub">Đại Học Kinh Tế Huế - K57B Thương Mại Điện Tử</p>
+          <p class="welcome-sub" id="editable-welcome-sub" data-key="welcome-sub">Đại Học Kinh Tế Huế - K57B Thương Mại
+            Điện Tử</p>
           <div class="welcome-actions">
             <button class="btn-primary" id="btn-explore-projects">Khám Phá Dự Án</button>
             <button class="btn-secondary" id="btn-contact-fb">Liên Hệ Ngay</button>
@@ -328,7 +262,8 @@
           <div class="home-card">
             <h3><i data-lucide="user"></i>Giới Thiệu</h3>
             <p id="editable-bio1" data-key="bio1">
-              Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế Đại Học Huế.
+              Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế
+              Đại Học Huế.
             </p>
             <p id="editable-bio2" data-key="bio2">
               Mình đang học khoá K57B Ngành Thương Mại Điện Tử thuộc khoa Marketing và Thương Mại.
@@ -420,7 +355,8 @@
               <p class="cv-subtitle">Sinh viên năm 3 | Đại học Kinh tế - Đại học Huế</p>
             </div>
           </div>
-          <a href="Ho_Van_Hung_CV.pdf" download="Ho_Van_Hung_CV.pdf" class="btn-primary btn-download-cv" id="btn-download-cv" style="text-decoration: none;">
+          <a href="Ho_Van_Hung_CV.pdf" download="Ho_Van_Hung_CV.pdf" class="btn-primary btn-download-cv"
+            id="btn-download-cv" style="text-decoration: none;">
             <i data-lucide="download"></i>
             <span>Tải PDF CV</span>
           </a>
@@ -434,7 +370,8 @@
             <div class="cv-card">
               <h3><i data-lucide="user"></i>Giới Thiệu</h3>
               <p>
-                Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh Tế Đại Học Huế.
+                Mình sinh năm 2005 đến từ Quảng Trị, Việt Nam. Hiện tại đang là sinh viên năm 3 tại trường Đại Học Kinh
+                Tế Đại Học Huế.
                 <br><br>
                 Mình đang học khoá K57B Ngành Thương Mại Điện Tử thuộc khoa Marketing và Thương Mại.
               </p>
@@ -474,7 +411,10 @@
                     <span class="timeline-date">2026 - Nay</span>
                   </div>
                   <p class="timeline-subtitle">Thực tập viên Marketing</p>
-                  <p class="timeline-desc">Chịu trách nhiệm lên ý tưởng, viết nội dung truyền thông và trực tiếp thiết kế poster, banner theo bộ nhận diện thương hiệu. Quá trình làm việc giúp tôi thành thạo kỹ năng sáng tạo nội dung, copywriting, tối ưu tư duy thẩm mỹ bố cục trên các công cụ thiết kế, đồng thời rèn luyện kỹ năng làm việc nhóm và thích nghi nhanh với áp lực môi trường Agency.</p>
+                  <p class="timeline-desc">Chịu trách nhiệm lên ý tưởng, viết nội dung truyền thông và trực tiếp thiết
+                    kế poster, banner theo bộ nhận diện thương hiệu. Quá trình làm việc giúp tôi thành thạo kỹ năng sáng
+                    tạo nội dung, copywriting, tối ưu tư duy thẩm mỹ bố cục trên các công cụ thiết kế, đồng thời rèn
+                    luyện kỹ năng làm việc nhóm và thích nghi nhanh với áp lực môi trường Agency.</p>
                 </div>
                 <div class="timeline-item">
                   <div class="timeline-dot"></div>
@@ -483,7 +423,10 @@
                     <span class="timeline-date">2026 - Nay</span>
                   </div>
                   <p class="timeline-subtitle">Kênh TikTok "Dạo Khắp Huế"</p>
-                  <p class="timeline-desc">Kỹ năng nghiên cứu xu hướng, lên ý tưởng, viết kịch bản, quay dựng video và quản trị kênh TikTok Review tại Huế, xuất sắc đạt các video viral tiếp cận hàng trăm nghìn người xem. Qua dự án, tôi đã làm chủ kỹ năng nắm bắt visual trend, sản xuất video ngắn, thấu hiểu hành vi người dùng trên nền tảng số và sở hữu tư duy nhạy bén trong việc xây dựng thương hiệu cá nhân.</p>
+                  <p class="timeline-desc">Kỹ năng nghiên cứu xu hướng, lên ý tưởng, viết kịch bản, quay dựng video và
+                    quản trị kênh TikTok Review tại Huế, xuất sắc đạt các video viral tiếp cận hàng trăm nghìn người
+                    xem. Qua dự án, tôi đã làm chủ kỹ năng nắm bắt visual trend, sản xuất video ngắn, thấu hiểu hành vi
+                    người dùng trên nền tảng số và sở hữu tư duy nhạy bén trong việc xây dựng thương hiệu cá nhân.</p>
                 </div>
                 <div class="timeline-item">
                   <div class="timeline-dot"></div>
@@ -492,7 +435,10 @@
                     <span class="timeline-date">2024 - 2025</span>
                   </div>
                   <p class="timeline-subtitle">Ban chủ nhiệm thế hệ F15</p>
-                  <p class="timeline-desc">Quản lý thành viên, lên ý tưởng và trực tiếp điều phối tổ chức các sự kiện lớn nhỏ của CLB, tiêu biểu là vai trò Leader dẫn dắt chương trình Amazing Race 2024. Trải nghiệm này giúp tôi phát triển toàn diện năng lực lãnh đạo, kỹ năng giao tiếp, quản trị rủi ro và giải quyết vấn đề hiệu quả trong môi trường đội nhóm áp lực cao.</p>
+                  <p class="timeline-desc">Quản lý thành viên, lên ý tưởng và trực tiếp điều phối tổ chức các sự kiện
+                    lớn nhỏ của CLB, tiêu biểu là vai trò Leader dẫn dắt chương trình Amazing Race 2024. Trải nghiệm này
+                    giúp tôi phát triển toàn diện năng lực lãnh đạo, kỹ năng giao tiếp, quản trị rủi ro và giải quyết
+                    vấn đề hiệu quả trong môi trường đội nhóm áp lực cao.</p>
                 </div>
                 <div class="timeline-item">
                   <div class="timeline-dot"></div>
@@ -501,7 +447,11 @@
                     <span class="timeline-date">2022 - 2025</span>
                   </div>
                   <p class="timeline-subtitle">Nhân viên đa lĩnh vực</p>
-                  <p class="timeline-desc">Tích lũy nhiều năm kinh nghiệm thực chiến qua các vai trò nhân viên quán cà phê, CLB bida, tư vấn bán điện thoại và giao nhận hàng hóa. Quá trình làm việc đa dạng ngành nghề giúp tôi thành thạo kỹ năng giao tiếp, xử lý tình huống linh hoạt và thấu hiểu sâu sắc tâm lý nhiều phân khúc khách hàng. Đây là vốn sống thực tế phong phú giúp tôi xây dựng tư duy nhạy bén và thực chiến trong ngành Content Marketing.</p>
+                  <p class="timeline-desc">Tích lũy nhiều năm kinh nghiệm thực chiến qua các vai trò nhân viên quán cà
+                    phê, CLB bida, tư vấn bán điện thoại và giao nhận hàng hóa. Quá trình làm việc đa dạng ngành nghề
+                    giúp tôi thành thạo kỹ năng giao tiếp, xử lý tình huống linh hoạt và thấu hiểu sâu sắc tâm lý nhiều
+                    phân khúc khách hàng. Đây là vốn sống thực tế phong phú giúp tôi xây dựng tư duy nhạy bén và thực
+                    chiến trong ngành Content Marketing.</p>
                 </div>
               </div>
             </div>
@@ -526,13 +476,15 @@
                   <span>0876270835</span>
                 </li>
                 <li>
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                   </svg>
                   <a href="https://www.facebook.com/vanhung.ho.75685962" target="_blank">Hồ Văn Hùng</a>
                 </li>
                 <li>
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />

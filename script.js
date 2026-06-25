@@ -438,246 +438,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadCvBtn = document.getElementById('btn-download-cv');
 
   // ============================================================
-  //  FACE ID BUTTON -> OPEN SCANNER
+  //  ADMIN LOGIN BUTTON
   // ============================================================
   const faceIdBtn = document.getElementById('face-id-btn');
-  const scannerOverlay = document.getElementById('face-scanner-overlay');
-  const scannerCloseBtn = document.getElementById('scanner-close-btn');
 
   faceIdBtn.addEventListener('click', () => {
     if (adminUnlocked) {
-      showToast('ℹ️ Bạn đã xác thực rồi. Dùng nút Thoát Admin để khóa.', 'warning');
+      showToast('ℹ️ Bạn đã đăng nhập rồi. Dùng nút Thoát Admin để khóa.', 'warning');
       return;
     }
-    openScanner();
-  });
-
-  scannerCloseBtn.addEventListener('click', () => closeScanner());
-
-  // ============================================================
-  //  FACE SCANNER LOGIC
-  // ============================================================
-  async function openScanner() {
-    scannerOverlay.classList.add('active');
-    resetScannerUI();
-    await runScannerPipeline();
-  }
-
-  function closeScanner() {
-    stopCamera();
-    scannerOverlay.classList.remove('active');
-    if (scannerInterval) { clearInterval(scannerInterval); scannerInterval = null; }
-  }
-
-  function resetScannerUI() {
-    // Reset all log entries
-    ['log-model', 'log-camera', 'log-reference', 'log-scanning'].forEach(id => {
-      const entry = document.getElementById(id);
-      if (entry) {
-        entry.className = 'log-entry';
-        const dot = entry.querySelector('.log-dot');
-        if (dot) dot.className = 'log-dot pending';
-      }
-    });
-    // Reset result
-    const result = document.getElementById('scanner-result');
-    if (result) { result.className = 'scanner-result'; result.textContent = ''; }
-    // Reset laser
-    const laser = document.getElementById('laser-sweep');
-    if (laser) laser.classList.remove('active');
-    // Reset face target
-    const faceTarget = document.getElementById('face-target-box');
-    if (faceTarget) faceTarget.classList.remove('visible');
-    // Reset subtitle
-    document.querySelector('.scanner-subtitle').textContent = 'Hệ thống nhận diện AI đang khởi động...';
-    setVideoStatus('Đang khởi động...');
-    matchCount = 0;
-  }
-
-  function setLogState(logId, state, label) {
-    const entry = document.getElementById(logId);
-    if (!entry) return;
-    entry.className = `log-entry ${state}`;
-    const dot = entry.querySelector('.log-dot');
-    if (dot) dot.className = `log-dot ${state}`;
-    if (label) entry.querySelector('.log-text').textContent = label;
-  }
-
-  function setVideoStatus(text) {
-    const el = document.getElementById('scanner-video-status');
-    if (el) el.innerHTML = `<span>${text}</span>`;
-  }
-
-  async function runScannerPipeline() {
-    // Step 1: Load models
-    setLogState('log-model', 'loading');
-    try {
-      if (!modelsLoaded) {
-        document.querySelector('.scanner-subtitle').textContent = 'Đang tải mô hình AI...';
-        await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
-        await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
-        await faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL);
-        modelsLoaded = true;
-      }
-      setLogState('log-model', 'done', 'Tải mô hình AI nhận diện khuôn mặt ✓');
-    } catch (err) {
-      setLogState('log-model', 'error', 'Lỗi: Không tải được mô hình AI');
-      showScannerError('❌ Không thể tải mô hình AI. Kiểm tra kết nối mạng và thử lại.');
-      return;
-    }
-
-    // Step 2: Start camera
-    setLogState('log-camera', 'loading');
-    document.querySelector('.scanner-subtitle').textContent = 'Đang kết nối camera...';
-    const video = document.getElementById('scanner-video');
-    try {
-      scannerStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480, facingMode: 'user' } });
-      video.srcObject = scannerStream;
-      await new Promise((resolve) => { video.onloadedmetadata = () => { video.play(); resolve(); }; });
-      setLogState('log-camera', 'done', 'Kết nối camera ✓');
-      setVideoStatus('Camera đang hoạt động');
-    } catch (err) {
-      setLogState('log-camera', 'error', 'Lỗi: Không thể truy cập camera');
-      showScannerError('❌ Không thể truy cập camera. Vui lòng cấp quyền camera cho trình duyệt.');
-      return;
-    }
-
-    // Step 3: Load reference face from avatar.jpg
-    setLogState('log-reference', 'loading');
-    document.querySelector('.scanner-subtitle').textContent = 'Đọc dữ liệu khuôn mặt tham chiếu...';
-    try {
-      const avatarSrc = localStorage.getItem('portfolio-avatar') || 'avatar.jpg';
-      const img = await faceapi.fetchImage(avatarSrc);
-      const detection = await faceapi.detectSingleFace(img, new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5 }))
-        .withFaceLandmarks().withFaceDescriptor();
-
-      if (!detection) {
-        setLogState('log-reference', 'error', 'Lỗi: Không tìm thấy khuôn mặt trong avatar');
-        showScannerError('❌ Không tìm thấy khuôn mặt trong ảnh avatar. Vui lòng dùng ảnh rõ khuôn mặt.');
-        stopCamera();
-        return;
-      }
-      referenceDescriptor = detection.descriptor;
-      setLogState('log-reference', 'done', 'Đọc dữ liệu khuôn mặt tham chiếu ✓');
-    } catch (err) {
-      setLogState('log-reference', 'error', 'Lỗi khi đọc ảnh tham chiếu');
-      showScannerError('❌ Lỗi đọc ảnh tham chiếu: ' + err.message);
-      stopCamera();
-      return;
-    }
-
-    // Step 4: Start scanning loop
-    setLogState('log-scanning', 'scanning', 'Đang quét & so khớp khuôn mặt...');
-    document.querySelector('.scanner-subtitle').textContent = 'Vui lòng nhìn thẳng vào camera...';
-    const laser = document.getElementById('laser-sweep');
-    laser.classList.add('active');
-
-    const canvas = document.getElementById('scanner-canvas');
-    const displaySize = { width: video.videoWidth || 640, height: video.videoHeight || 480 };
-    faceapi.matchDimensions(canvas, displaySize);
-
-    let scanTimeout = setTimeout(() => {
-      if (scannerInterval) { clearInterval(scannerInterval); scannerInterval = null; }
-      stopCamera();
-      laser.classList.remove('active');
-      setLogState('log-scanning', 'error', 'Không nhận diện được — hết thời gian');
-      showScannerError('⏱️ Hết thời gian! Không nhận diện được khuôn mặt. Hãy thử lại và đảm bảo ánh sáng đủ.');
-    }, 18000);
-
-    scannerInterval = setInterval(async () => {
-      if (!video.videoWidth) return;
-
-      try {
-        const detections = await faceapi.detectAllFaces(video, new faceapi.SsdMobilenetv1Options({ minConfidence: 0.4 }))
-          .withFaceLandmarks().withFaceDescriptors();
-
-        const resizedDetections = faceapi.resizeResults(detections, displaySize);
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const faceTarget = document.getElementById('face-target-box');
-
-        if (detections.length === 0) {
-          faceTarget.classList.remove('visible');
-          setVideoStatus('Không thấy khuôn mặt...');
-          return;
-        }
-
-        // Draw face box
-        const box = resizedDetections[0].detection.box;
-        const videoEl = document.getElementById('scanner-video');
-        const rect = videoEl.getBoundingClientRect();
-        const scaleX = rect.width / (video.videoWidth || 640);
-        const scaleY = rect.height / (video.videoHeight || 480);
-        // Mirror the box (scaleX(-1))
-        const mirroredX = rect.width - (box.x + box.width) * scaleX;
-        faceTarget.style.left = `${mirroredX}px`;
-        faceTarget.style.top = `${box.y * scaleY}px`;
-        faceTarget.style.width = `${box.width * scaleX}px`;
-        faceTarget.style.height = `${box.height * scaleY}px`;
-        faceTarget.classList.add('visible');
-
-        // Compare with reference
-        const descriptor = detections[0].descriptor;
-        const distance = faceapi.euclideanDistance(descriptor, referenceDescriptor);
-
-        if (distance < MATCH_THRESHOLD) {
-          matchCount++;
-          setVideoStatus(`Đang xác nhận... (${matchCount}/3)`);
-          if (matchCount >= 3) {
-            clearInterval(scannerInterval);
-            scannerInterval = null;
-            clearTimeout(scanTimeout);
-            laser.classList.remove('active');
-            faceTarget.style.border = '2px solid #00ff88';
-            await new Promise(r => setTimeout(r, 400));
-            stopCamera();
-            onFaceMatched();
-          }
-        } else {
-          matchCount = 0;
-          setVideoStatus(`Đang tìm kiếm... (${Math.round((1 - distance) * 100)}%)`);
-        }
-      } catch (e) {
-        // silently continue
-      }
-    }, 200);
-  }
-
-  function stopCamera() {
-    if (scannerStream) {
-      scannerStream.getTracks().forEach(t => t.stop());
-      scannerStream = null;
-    }
-    const video = document.getElementById('scanner-video');
-    if (video) video.srcObject = null;
-  }
-
-  function showScannerError(msg) {
-    const result = document.getElementById('scanner-result');
-    if (result) {
-      result.className = 'scanner-result error';
-      result.textContent = msg;
-    }
-    document.querySelector('.scanner-subtitle').textContent = 'Xác thực thất bại';
-  }
-
-  function onFaceMatched() {
-    setLogState('log-scanning', 'done', 'Khuôn mặt khớp — Xác thực thành công! ✓');
-    document.querySelector('.scanner-subtitle').textContent = 'Đang mở khóa Admin...';
-    setVideoStatus('✅ Xác thực thành công!');
-
-    const result = document.getElementById('scanner-result');
-    result.className = 'scanner-result success';
-    result.textContent = '✅ Xác thực thành công! Chào mừng trở lại, Hồ Văn Hùng! Đang mở chế độ Admin...';
-
-    setTimeout(() => {
-      closeScanner();
+    
+    const password = prompt('Vui lòng nhập mật khẩu Admin (mặc định: 123456):');
+    if (password === '123456') { 
       adminUnlocked = true;
       sessionStorage.setItem('admin-unlocked', 'true');
       enableAdminMode(true);
-    }, 1800);
-  }
+    } else if (password !== null) {
+      showToast('❌ Sai mật khẩu!', 'error');
+    }
+  });
 
   // ============================================================
   //  ADMIN MODE ENABLE / DISABLE
