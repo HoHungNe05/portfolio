@@ -1730,6 +1730,9 @@ body[data-theme-style="light"] .icon-moon {
 
   /* Left Sidebar as Collapsible Navigation Bar on Mobile */
   .sidebar-left {
+    position: sticky !important;
+    top: 10px !important;
+    z-index: 1000 !important;
     flex-direction: column !important;
     padding: 10px 16px !important;
     width: 100% !important;
@@ -1743,7 +1746,7 @@ body[data-theme-style="light"] .icon-moon {
 
   /* When mobile menu is open, height expands to fit contents */
   .sidebar-left.menu-open {
-    height: 120px !important;
+    height: 175px !important;
   }
 
   /* Mobile Header Row (always visible) */
@@ -1806,9 +1809,10 @@ body[data-theme-style="light"] .icon-moon {
   /* Collapsible content container styling */
   .sidebar-content {
     display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
     align-items: center !important;
+    gap: 14px !important;
     margin-top: 14px !important;
     width: 100% !important;
     opacity: 0 !important;
@@ -1823,14 +1827,14 @@ body[data-theme-style="light"] .icon-moon {
   }
 
   .sidebar-top-group {
-    width: auto !important;
+    width: 100% !important;
     display: flex !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
   }
 
   .nav-menu {
     flex-direction: row !important;
-    gap: 6px !important;
+    gap: 10px !important;
   }
 
   .nav-menu .nav-item {
@@ -1856,9 +1860,11 @@ body[data-theme-style="light"] .icon-moon {
   }
 
   .sidebar-bottom-group {
-    width: auto !important;
+    width: 100% !important;
     display: flex !important;
-    justify-content: flex-end !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
   }
 
   .sidebar-bottom-group .nav-group-pills {
