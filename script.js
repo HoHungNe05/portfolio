@@ -440,22 +440,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   //  ADMIN LOGIN BUTTON
   // ============================================================
-  const faceIdBtn = document.getElementById('face-id-btn');
+  const faceIdBtns = document.querySelectorAll('.face-id-btn');
 
-  faceIdBtn.addEventListener('click', () => {
-    if (adminUnlocked) {
-      showToast('ℹ️ Bạn đã đăng nhập rồi. Dùng nút Thoát Admin để khóa.', 'warning');
-      return;
-    }
+  faceIdBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (adminUnlocked) {
+        showToast('ℹ️ Bạn đã đăng nhập rồi. Dùng nút Thoát Admin để khóa.', 'warning');
+        return;
+      }
 
-    const password = prompt('Nhập mật khẩu để chỉnh sửa:');
-    if (password === 'Hung0234') {
-      adminUnlocked = true;
-      sessionStorage.setItem('admin-unlocked', 'true');
-      enableAdminMode(true);
-    } else if (password !== null) {
-      showToast('❌ Sai mật khẩu!', 'error');
-    }
+      const password = prompt('Nhập mật khẩu để chỉnh sửa:');
+      if (password === 'Hung0234') {
+        adminUnlocked = true;
+        sessionStorage.setItem('admin-unlocked', 'true');
+        enableAdminMode(true);
+      } else if (password !== null) {
+        showToast('❌ Sai mật khẩu!', 'error');
+      }
+    });
   });
 
   // ============================================================

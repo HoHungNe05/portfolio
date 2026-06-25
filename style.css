@@ -1835,6 +1835,8 @@ body[data-theme-style="light"] .icon-moon {
   .nav-menu {
     flex-direction: row !important;
     gap: 10px !important;
+    justify-content: center !important;
+    width: 100% !important;
   }
 
   .nav-menu .nav-item {
@@ -1865,6 +1867,10 @@ body[data-theme-style="light"] .icon-moon {
     justify-content: center !important;
     align-items: center !important;
     gap: 12px !important;
+  }
+
+  .sidebar-bottom-group .face-id-btn {
+    display: none !important;
   }
 
   .sidebar-bottom-group .nav-group-pills {
